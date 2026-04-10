@@ -42,3 +42,16 @@ class TextFileReader(DataReader):
             for line in file:
                 yield line
 
+
+class TextFileWriter(DataWriter):
+    """Writes lines to a text file."""
+
+    def __init__(self, file_path: str):
+        self.file_path = file_path
+
+    def write(self, data: Iterable[str]) -> None:
+        """Writes given iterable of strings to the file."""
+        with open(self.file_path, 'w', encoding='utf-8') as file:
+            file.writelines(data)
+
+
