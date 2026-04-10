@@ -7,4 +7,3 @@
 2023-10-27 10:01:30 [DEBUG] Processing user data...
 2023-10-27 10:02:10 [ERROR] NullReferenceException in module 'payment_gateway'.
 2023-10-27 10:05:00 [INFO] Scheduled maintenance task completed.
-2023-10-27 10:02:10 [ERROR] some error.
