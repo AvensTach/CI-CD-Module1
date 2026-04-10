@@ -32,7 +32,10 @@ def output_file_path(tmp_path):
 # --- Parametrized Tests ---
 
 @pytest.mark.parametrize("keyword, expected_lines", [
-    ("ERROR", ["ERROR: Database connection failed\n", "ERROR: Timeout occurred\n"]),
+    ("ERROR", [
+        "ERROR: Database connection failed\n",
+        "ERROR: Timeout occurred\n"
+    ]),
     ("INFO", ["INFO: Application started\n"]),
     ("WARNING", []),  # No matches
 ])

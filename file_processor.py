@@ -1,9 +1,8 @@
 from abc import ABC, abstractmethod
-from typing import List, Iterable
-from pathlib import Path
+from typing import Iterable
 
 
-# --- Interfaces (ISP: Interface Segregation Principle) ---
+# --- Interfaces ---
 
 class DataReader(ABC):
     """Abstract base class for reading data."""
