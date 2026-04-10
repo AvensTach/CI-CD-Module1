@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 from typing import List, Iterable
 from pathlib import Path
 
+
 # --- Interfaces (ISP: Interface Segregation Principle) ---
 
 class DataReader(ABC):
@@ -66,3 +67,21 @@ class KeywordFilter(FilterStrategy):
         return self.keyword in item
 
 
+class FileProcessor:
+    """Processes files using provided reader, writer, and filter."""
+
+    def __init__(
+            self,
+            reader: DataReader,
+            writer: DataWriter,
+            filter_strategy: FilterStrategy
+    ):
+        self.reader = reader
+        self.writer = writer
+        self.filter_strategy = filter_strategy
+
+    def process(self) -> None:
+        """Reads, filters, and writes data."""
+        raw_data = self.reader.read()
+        filtered_data = (line for line in raw_data if self.filter_strategy.is_match(line))
+        self.writer.write(filtered_data)
