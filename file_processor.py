@@ -55,3 +55,14 @@ class TextFileWriter(DataWriter):
             file.writelines(data)
 
 
+class KeywordFilter(FilterStrategy):
+    """Filters lines based on a specific keyword."""
+
+    def __init__(self, keyword: str):
+        self.keyword = keyword
+
+    def is_match(self, item: str) -> bool:
+        """Returns True if keyword is present in the item."""
+        return self.keyword in item
+
+
