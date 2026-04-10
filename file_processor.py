@@ -28,3 +28,17 @@ class FilterStrategy(ABC):
         pass
 
 
+# --- Concrete Implementations ---
+
+class TextFileReader(DataReader):
+    """Reads lines from a text file."""
+
+    def __init__(self, file_path: str):
+        self.file_path = file_path
+
+    def read(self) -> Iterable[str]:
+        """Yields lines from the file one by one."""
+        with open(self.file_path, 'r', encoding='utf-8') as file:
+            for line in file:
+                yield line
+
