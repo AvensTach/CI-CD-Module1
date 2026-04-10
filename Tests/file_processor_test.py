@@ -53,3 +53,23 @@ def test_keyword_filter(keyword, expected_lines):
     # Assert
     assert filtered == expected_lines
 
+
+def test_file_processor_integration(sample_input_file, output_file_path):
+    """Test the entire FileProcessor workflow using fixtures."""
+    # Arrange
+    keyword = "ERROR"
+    reader = TextFileReader(sample_input_file)
+    writer = TextFileWriter(output_file_path)
+    filter_strategy = KeywordFilter(keyword)
+    processor = FileProcessor(reader, writer, filter_strategy)
+
+    # Act
+    processor.process()
+
+    # Assert
+    with open(output_file_path, 'r', encoding="utf-8") as f:
+        result_lines = f.readlines()
+
+    assert len(result_lines) == 2
+    assert "ERROR: Database connection failed\n" in result_lines
+    assert "ERROR: Timeout occurred\n" in result_lines
